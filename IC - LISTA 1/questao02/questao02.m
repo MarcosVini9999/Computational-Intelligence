@@ -37,6 +37,7 @@ beta_chap = (matriz_X(num_amostras, vel_vento, grau)' * matriz_X(num_amostras, v
 
 %Função de regressão múltipla
 y_chap = matriz_X(num_amostras, vel_vento, grau)*beta_chap;
+plot(vel_vento, y_chap, 'r-');
 
 % Coeficiente de determinação
 R2 = 1 - (sum((potencia - y_chap).^2)) / (sum((potencia - mean(potencia)).^2));
@@ -44,6 +45,6 @@ fprintf('R2 = %f\n', R2);
 
 % Coeficiente de determinação ajustado
 p = grau + 1; 
-R2_AJ = 1 - ((sum((potencia - y_chap).^2)) / (potencia - p)) / ((sum((potencia - mean(potencia)).^2)) / (num_amostras-1));
+R2_AJ = 1 - ((sum((potencia - y_chap).^2)) / (num_amostras - p)) / ((sum((potencia - mean(potencia)).^2)) / (num_amostras-1));
 fprintf('R2AJ = %f\n', R2_AJ);
 end
