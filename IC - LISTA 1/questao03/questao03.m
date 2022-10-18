@@ -23,28 +23,21 @@ function questao03()
         X(20+i) = X2(i);
         i=i+1;
     end
+
     beta_chap = ((X.')*X) \ ((X.')*Y);
     
     %Plotagem do gráfico 3D
     plot3 (X1, X2, Y, '*');
     hold on;
     grid on;
-    [X1,X2] = meshgrid (30:0.5:180, 30:0.5:180);
-    y_chap = beta_chap(1) + beta_chap(2).*(X1) + beta_chap(3).*(X2);
-    mesh (X1,X2, y_chap);
+    [x1,x2] = meshgrid(30:0.5:180, 30:0.5:180);
+    y_chap = beta_chap(1) + beta_chap(2).*(x1) + beta_chap(3).*(x2);
+    mesh (x1,x2, y_chap);
+    
+    y_chap = X * beta_chap;
     
     %Coeiciente de determinação
-    ymed = sum(Y)/ length(Y);
-    y_chap = ones(length(Y),1);
-    SQe = ones (length (Y),1);
-    Syy = ones (length (Y),1);
-    i=1;
-    while i<=length(Y)
-        y_chap(i) = beta_chap(1) + beta_chap(2)*(X1(i)) + beta_chap(3)*(X2(i));
-        SQe(i) = (Y(i)-y_chap(i))^2;
-        Syy(i) = (Y(i)-ymed)^2;
-        i=i+1;
-    end
-    R2= 1-((sum(SQe)/sum(Syy)));
+    R2 = 1 - (sum((Y - y_chap).^2)) / (sum((Y - mean(Y)).^2));
+
     fprintf('R2 = %f\n', R2);
 end
