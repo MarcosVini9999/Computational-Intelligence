@@ -37,9 +37,6 @@ function consumo = FuzzyLogic(temperatura,preco)
     consumo_p = prod([r3, r6, r9]);
     consumo_m = prod([r2, r5, r8]);
     consumo_g = prod([r1, r4, r7]);
-
-    consumos = [c_pequeno, c_medio, c_grande];
-    consumos_imp = [consumo_p, consumo_m, consumo_g];
         
     %Agregação
     c_baixo_pertecimento = min(c_pequeno, consumo_p);
