@@ -5,9 +5,11 @@ function [X_train, Y_train, X_test, Y_test] = HoldOut(X, Y, training_percentage)
     testing_percentage = 1 - training_percentage;
     num_testing_samples = round(testing_percentage * num_samples);
 
-    %Amostras de treino embaralhados
-    X_train = X(:, randperm(length(X)));
-    Y_train = Y(:, randperm(length(X)));
+    training_samples = randperm(length(X));
+
+    %Amostras de treino embaralhadas
+    X_train = X(:, training_samples);
+    Y_train = Y(:, training_samples);
     
     %Cria uma matriz de zeros para guardar as amostras de teste
     X_test = zeros(num_var, num_testing_samples);
@@ -21,4 +23,3 @@ function [X_train, Y_train, X_test, Y_test] = HoldOut(X, Y, training_percentage)
         Y_train(:, i) = [];
     end
 end
-
