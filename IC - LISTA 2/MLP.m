@@ -1,10 +1,12 @@
 base = fopen("assets\column_3C.dat");
 C = textscan(base, '%f %f %f %f %f %f %s', 'Delimiter',',');
 
+
 %Configurações
 num_executions = 10; %número de execuções
 training_percentage = 0.7; %Porcentagem de amostras para treino
 num_hidden_layer = 30; %Tamanho da camada oculta
+
 
 %Transforma a saída do dataset em um conjunto real/analógica
 outputs = C{7};
@@ -34,10 +36,10 @@ for execution = 1:num_executions
     %Treina a rede com as amostras de treino
     net = train(net, X_train, Y_train);
     
-    % Uma predição é feita com os dados de teste
+    %Prevê as amostras de teste
     prediction = net(X_test);
 
-    % É comparado os dados de teste com a predição por meio da acurácia
+    %Calcula a precisão da previsão  
     accuracy(execution) = Accuracy(Y_test, prediction);
 
     fprintf('Execução %d, acurácia %f\n', execution, accuracy(execution));
