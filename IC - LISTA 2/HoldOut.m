@@ -4,7 +4,7 @@ function [X_train, Y_train, X_test, Y_test] = HoldOut(X, Y, training_percentage)
 
     testing_percentage = 1 - training_percentage;
     num_testing_samples = round(testing_percentage * num_samples);
-
+    
     training_samples = randperm(length(X));
 
     %Amostras de treino embaralhadas
