@@ -1,4 +1,4 @@
-function consumo = FuzzyLogic(temperatura,preco)
+function consumo = fuzzyLogic(temperatura,preco)
     t_ranger = linspace(15, 45, 1000);
     p_ranter = linspace(1, 6, 1000);
     c_ranger = 500:6000;
